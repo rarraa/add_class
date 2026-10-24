@@ -4,46 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rara</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body>
-    <header>
-        <img src="avatar.svg" alt="foto profile saya">
-        <h1>Destia Tsani</h1>
-        <p>mba - mba luar biasa</p>
-    </header>
+    <body class="min-h-screen bg-slate-100 text-slate-800">
+        <div class="mx-auto max-w-md px-4 py-10">
+            <header class="flex flex-col items-center text-center">
+            <img src="avatar.svg" alt="Foto profile Destia"
+                class="h-24 w-24 rounded-full shadow ring-4 ring-white">
+            <h1 class="mt-4 text-2xl font-bold">Destia Tsani</h1>
+            <p class="mt-1 text-sm text-slate-500">Mahasiswa IT · Belajar web development</p>
+            </header>
 
-    <!-- <div>
-        <h1>Hallo, Namaku Rara</h1>
-        <p>Ini halaman kesekian kali ku di Internet!</p>
-        <h3>Deskripsi</h3>
-        <p>Halaman ini dibuat dalam kegiatan add class</p>
-        <ul>
-            <li>Mahasiswa Teknik Informatika</li>
-            <li>UNSIQ</li>
-            <li>Semester 5</li>
-        </ul>
-    </div> -->
+            <nav aria-label="Media sosial" class="mt-6">
+            <ul class="flex justify-center gap-3">
+                <li>
+                <a href="https://github.com/username" aria-label="GitHub"
+                    class="flex h-11 w-11 items-center justify-center rounded-full bg-white text-xl shadow-sm ring-1 ring-slate-200"
+                    transition hover:-translate-y-0.5 hover:bg-slate-900 hover:text-white hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600>🐙</a>
+                </li>
+                <li>
+                <a href="https://instagram.com/username" aria-label="Instagram"
+                    class="flex h-11 w-11 items-center justify-center rounded-full bg-white text-xl shadow-sm ring-1 ring-slate-200">📸</a>
+                </li>
+                <li>
+                <a href="https://linkedin.com/in/username" aria-label="LinkedIn"
+                    class="flex h-11 w-11 items-center justify-center rounded-full bg-white text-xl shadow-sm ring-1 ring-slate-200">💼</a>
+                </li>
+            </ul>
+            </nav>
 
-    <nav aria-label="Media sosial">
-    <ul>
-        <li><a href="https://github.com/rarraa" aria-label="GitHub">GitHub</a></li>
-        <li><a href="https://instagram.com/dstzraaaa" aria-label="Instagram">Instagram</a></li>
-        <li><a href="https://linkedin.com/in/username" aria-label="LinkedIn">Linkedin</a></li>
-    </ul>
-    </nav>
+            <main>
+            <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-slate-500">Link Saya</h2>
 
-    <main>
-        <h2>Link Saya</h2>
-        <ul>
-            <li><a href="https://example.com/portfolio">Portofolio</a></li>
-            <li><a href="https://github.com/username/link-page">Link Page Ini</a></li>
-            <li><a href="https://example.com/catatan">Catatan Kursus</a></li>
-            <li><a href="mailto:halo@example.com">Email</a></li>
-        </ul>
-    </main>
-    <footer>
-        <p>&copy; 2026 Destia tsani</p>
-    </footer>
+            <ul class="mt-3 space-y-3">
+                <li>
+                <a href="https://example.com/portfolio"
+                    class="flex items-center justify-center gap-3 rounded-xl bg-white px-5 py-4 font-medium shadow-sm ring-1 ring-slate-200">
+                    <span aria-hidden="true">🎨</span> Portofolio
+                </a>
+                </li>
+                <!-- 📋 salin <li> di atas untuk link lainnya, ganti href, ikon, dan teks -->
+            </ul>
+            </main>
 
+            <footer class="mt-10 text-center text-xs text-slate-400">
+                <p>&copy; 2026 Destia tsani</p>
+            </footer>
+        </div>
+    </body>
+
+    <script src="script.js"></script>
 </body>
 </html>
