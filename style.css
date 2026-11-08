@@ -1,0 +1,103 @@
+/* ========================================================
+   STYLE.CSS — Tautan & Tampilan Link Page UMKM
+   Tema: UMKM Rasa Nusantara (Kopi & Kudapan Tradisional)
+   Sesuai Panduan Materi Pertemuan 1 - 4
+   ======================================================== */
+
+/* 1. Definisi Custom Variant Dark Mode untuk Tailwind CSS v4 */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* 2. Pengaturan Dasar Halaman */
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* 3. Kustomisasi Scrollbar Halus & Bersih */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d6d3d1;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a29e;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #292524;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #44403c;
+}
+
+/* 4. Efek Transisi Kartu & Tombol */
+.link-card-transition {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.2s ease, 
+              background-color 0.2s ease;
+}
+
+/* 5. Animasi Masuk Halus (Fade Enter) */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.25s ease-out forwards;
+}
+
+/* 6. Kartu Galeri / Katalog Produk */
+.product-card {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-3px);
+}
+
+.product-image-box {
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-image-box {
+  transform: scale(1.05);
+}
+
+/* 7. Toast Notification Mengambang */
+#toast {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+
+/* 8. Fokus Aksesibilitas (Focus Visible Ring) */
+:focus-visible {
+  outline: 2px solid #d97706;
+  outline-offset: 2px;
+}
+
+.dark :focus-visible {
+  outline-color: #f59e0b;
+}

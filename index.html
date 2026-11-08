@@ -1,61 +1,267 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rara</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rasa Nusantara — Kopi & Camilan Tradisional UMKM</title>
+  
+  <!-- Tailwind CSS CDN (v4 Browser) -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  
+  <!-- File CSS Terpisah Sesuai Standar Proyek Web -->
+  <link rel="stylesheet" type="text/tailwindcss" href="style.css">
+  <link rel="stylesheet" href="style.css">
+
+  <script>
+    // Dijalankan SEBELUM halaman tampil, supaya tidak berkedip saat dark mode aktif (Pertemuan 3)
+    try {
+      const savedTheme = localStorage.getItem("linkpage:theme");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      if (savedTheme === "dark" || (savedTheme === null && prefersDark)) {
+        document.documentElement.classList.add("dark");
+      }
+    } catch (error) {
+      // localStorage aman jika diblokir browser
+    }
+  </script>
 </head>
-<body>
-    <body class="min-h-screen bg-slate-100 text-slate-800 ">
-        <div class="mx-auto max-w-md px-4 py-10 md:max-w-xl md:py-16 lg:grid lg:max-w-5xl lg:grid-cols-2 lg:items-start lg:gap-16">
-            <div class="lg:sticky lg:top-16">
-                <header class="flex flex-col items-center text-center">
-                <img src="avatar.svg" alt="Foto profile Destia"
-                    class="h-24 w-24 rounded-full shadow ring-4 ring-white md:h-28 md:w-28">
-                <h1 class="mt-4 text-2xl font-bold md:text-3xl">Destia Tsani</h1>
-                <p class="mt-1 text-sm text-slate-500">Mahasiswa IT · Belajar web development</p>
-                </header>
+<body class="min-h-screen bg-stone-100 text-stone-800 transition-colors duration-200 dark:bg-stone-950 dark:text-stone-100 font-sans antialiased">
 
-                <nav aria-label="Media sosial" class="mt-6">
-                <ul class="flex justify-center gap-3">
-                    <li>
-                    <a href="https://github.com/username" aria-label="GitHub"
-                        class="flex h-11 w-11 items-center justify-center rounded-full bg-white text-xl shadow-sm ring-1 ring-slate-200"
-                        duration-200 motion-reduce:transition-none motion-reduce:hover:translate-y-0>🐙</a>
-                    </li>
-                    <li>
-                    <a href="https://instagram.com/username" aria-label="Instagram"
-                        class="flex h-11 w-11 items-center justify-center rounded-full bg-white text-xl shadow-sm ring-1 ring-slate-200">📸</a>
-                    </li>
-                    <li>
-                    <a href="https://linkedin.com/in/username" aria-label="LinkedIn"
-                        class="flex h-11 w-11 items-center justify-center rounded-full bg-white text-xl shadow-sm ring-1 ring-slate-200">💼</a>
-                    </li>
-                </ul>
-                </nav>
-            </div>
-            
-            <main>
-            <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-slate-500 lg:mt-0">Link Saya</h2>
+  <!-- Tombol Aksi Melayang (Floating Buttons) -->
+  <div class="fixed right-4 top-4 z-50 flex items-center gap-2">
+    <!-- Inovasi User-Friendly: Tombol Bagikan / Salin Link Toko -->
+    <button id="share-btn" type="button" aria-label="Bagikan profil UMKM" title="Bagikan / Salin link profil"
+            class="flex h-11 w-11 items-center justify-center rounded-full bg-white text-lg shadow-sm ring-1 ring-stone-200 transition duration-200 hover:scale-105 hover:bg-stone-50 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600 dark:bg-stone-900 dark:text-stone-100 dark:ring-stone-800 dark:hover:bg-stone-800 dark:focus-visible:outline-amber-400">
+      📤
+    </button>
 
-            <ul class="mt-3 space-y-3">
-                <li>
-                <a href="https://example.com/portfolio"
-                    class="flex items-center justify-center gap-3 rounded-xl bg-white px-5 py-4 font-medium shadow-sm ring-1 ring-slate-200">
-                    <span aria-hidden="true">🎨</span> Portofolio
-                </a>
-                </li>
-                <!-- 📋 salin <li> di atas untuk link lainnya, ganti href, ikon, dan teks -->
-            </ul>
-            </main>
+    <!-- Tombol Pengalih Mode Gelap/Terang (Pertemuan 3) -->
+    <button id="theme-toggle" type="button" aria-label="Ganti ke mode gelap" title="Ubah tema"
+            class="flex h-11 w-11 items-center justify-center rounded-full bg-white text-xl shadow-sm ring-1 ring-stone-200 transition duration-200 hover:scale-105 hover:bg-stone-50 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600 dark:bg-stone-900 dark:ring-stone-800 dark:hover:bg-stone-800 dark:focus-visible:outline-amber-400">
+      🌙
+    </button>
+  </div>
 
-            <footer class="mt-10 text-center text-xs text-slate-400 lg:col-span-2">
-                <p>&copy; 2026 Destia tsani</p>
-            </footer>
+  <!-- Toast Notification untuk Feedback Interaktif -->
+  <div id="toast" role="status" aria-live="polite"
+       class="fixed bottom-6 left-1/2 z-50 -translate-x-1/2 pointer-events-none opacity-0 translate-y-3 transition-all duration-300 rounded-full bg-stone-900/90 px-5 py-2.5 text-sm font-medium text-white shadow-lg backdrop-blur-sm dark:bg-stone-100/95 dark:text-stone-900">
+    Pesan notifikasi
+  </div>
+
+  <!-- Kontainer Halaman: Responsif Mobile, Tablet, dan 2-Kolom Desktop (Pertemuan 2) -->
+  <div class="mx-auto max-w-md px-4 py-8 md:max-w-xl md:py-14 lg:grid lg:max-w-5xl lg:grid-cols-2 lg:items-start lg:gap-14">
+    
+    <!-- KOLOM KIRI (Profil & Info UMKM - Sticky di Desktop) -->
+    <aside class="lg:sticky lg:top-12 space-y-6">
+      
+      <!-- Profil Usaha UMKM -->
+      <header class="flex flex-col items-center text-center">
+        <!-- Avatar Logo UMKM -->
+        <div class="relative group">
+          <img src="avatar.svg" alt="Logo Rasa Nusantara UMKM"
+               class="h-28 w-28 rounded-full shadow-md ring-4 ring-amber-500/30 transition-transform duration-300 group-hover:scale-105 md:h-32 md:w-32">
+          <span class="absolute bottom-1 right-1 flex h-7 w-7 items-center justify-center rounded-full bg-amber-500 text-xs font-bold text-white shadow" title="Toko Resmi UMKM Terverifikasi">
+            ✓
+          </span>
         </div>
-    </body>
 
-    <script src="script.js"></script>
+        <!-- Nama Brand & Badge -->
+        <div class="mt-4 flex flex-wrap items-center justify-center gap-2">
+          <h1 class="text-2xl font-bold tracking-tight md:text-3xl">Rasa Nusantara</h1>
+          <span class="rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-semibold text-amber-800 dark:bg-amber-950 dark:text-amber-300 ring-1 ring-amber-300 dark:ring-amber-700">
+            UMKM Lokal
+          </span>
+        </div>
+
+        <!-- Tagline & Deskripsi Usaha -->
+        <p class="mt-2 text-sm text-stone-600 dark:text-stone-300 max-w-xs md:max-w-sm">
+          Artisan Kopi Asli Nusantara & Kudapan Tradisional Pilihan. Diracik higienis dengan resep turun-temurun sejak 2021.
+        </p>
+
+        <!-- Inovasi Fitur: Status Jam Buka Toko Real-time -->
+        <div class="mt-4 inline-flex items-center gap-2 rounded-full bg-white px-3.5 py-1.5 text-xs font-medium shadow-sm ring-1 ring-stone-200 dark:bg-stone-900 dark:ring-stone-800">
+          <span id="store-status-dot" class="inline-block h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span id="store-status-text" class="text-stone-700 dark:text-stone-300">Buka Hari Ini: 08:00 – 21:00 WIB</span>
+        </div>
+
+        <!-- Alamat Ringkas -->
+        <p class="mt-2 text-xs text-stone-500 dark:text-stone-400">
+          📍 Jl. Merdeka No. 45, Bandung · Dine-in & Takeaway
+        </p>
+      </header>
+
+      <!-- Navigasi Sosial Media (Pertemuan 1 & 2) -->
+      <nav aria-label="Media sosial resmi" class="pt-2">
+        <ul class="flex justify-center gap-3">
+          <li>
+            <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" aria-label="Chat WhatsApp"
+               class="flex h-11 w-11 items-center justify-center rounded-full bg-white text-xl shadow-sm ring-1 ring-stone-200 transition duration-200 hover:-translate-y-1 hover:bg-emerald-50 hover:ring-emerald-400 active:scale-95 dark:bg-stone-900 dark:ring-stone-800 dark:hover:bg-emerald-950"
+               title="WhatsApp Kami">💬</a>
+          </li>
+          <li>
+            <a href="https://instagram.com/rasanusantara.id" target="_blank" rel="noopener noreferrer" aria-label="Instagram Resmi"
+               class="flex h-11 w-11 items-center justify-center rounded-full bg-white text-xl shadow-sm ring-1 ring-stone-200 transition duration-200 hover:-translate-y-1 hover:bg-rose-50 hover:ring-rose-400 active:scale-95 dark:bg-stone-900 dark:ring-stone-800 dark:hover:bg-rose-950"
+               title="Instagram @rasanusantara.id">📸</a>
+          </li>
+          <li>
+            <a href="https://tiktok.com/@rasanusantaracoffee" target="_blank" rel="noopener noreferrer" aria-label="TikTok Resmi"
+               class="flex h-11 w-11 items-center justify-center rounded-full bg-white text-xl shadow-sm ring-1 ring-stone-200 transition duration-200 hover:-translate-y-1 hover:bg-stone-100 hover:ring-stone-400 active:scale-95 dark:bg-stone-900 dark:ring-stone-800 dark:hover:bg-stone-800"
+               title="TikTok @rasanusantaracoffee">🎵</a>
+          </li>
+          <li>
+            <a href="https://maps.google.com/?q=Bandung" target="_blank" rel="noopener noreferrer" aria-label="Google Maps Lokasi Toko"
+               class="flex h-11 w-11 items-center justify-center rounded-full bg-white text-xl shadow-sm ring-1 ring-stone-200 transition duration-200 hover:-translate-y-1 hover:bg-amber-50 hover:ring-amber-400 active:scale-95 dark:bg-stone-900 dark:ring-stone-800 dark:hover:bg-amber-950"
+               title="Petunjuk Arah Google Maps">📍</a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Banner Ringkas Keunggulan Produk UMKM -->
+      <div class="hidden lg:block rounded-2xl bg-amber-50/70 p-4 ring-1 ring-amber-200/70 dark:bg-amber-950/30 dark:ring-amber-900/50">
+        <h3 class="text-xs font-semibold uppercase tracking-wider text-amber-900 dark:text-amber-300">Mengapa Memilih Kami?</h3>
+        <ul class="mt-2 space-y-1.5 text-xs text-amber-950/80 dark:text-stone-300">
+          <li class="flex items-center gap-1.5"><span>☕</span> 100% Biji Kopi Petani Lokal Jawa Barat & Gayo</li>
+          <li class="flex items-center gap-1.5"><span>🥐</span> Camilan Tradisional Segar Dibuat Setiap Pagi</li>
+          <li class="flex items-center gap-1.5"><span>🌿</span> Bebas Bahan Pengawet & Tersertifikasi Halal</li>
+        </ul>
+      </div>
+
+    </aside>
+
+    <!-- KOLOM KANAN (Daftar Link, Filter, Pencarian, & Form Tambah Link) -->
+    <main class="mt-8 lg:mt-0">
+      
+      <!-- Heading & Live Search Bar (Inovasi User-Friendly) -->
+      <div class="flex flex-col gap-3">
+        <div class="flex items-center justify-between">
+          <h2 class="text-sm font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">
+            Daftar Tautan & Menu
+          </h2>
+          <!-- Counter Jumlah Link (Pertemuan 4) -->
+          <p id="link-count" aria-live="polite" class="text-xs font-medium text-stone-500 dark:text-stone-400"></p>
+        </div>
+
+        <!-- Kolom Pencarian Cepat (Live Search) -->
+        <div class="relative">
+          <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-stone-400" aria-hidden="true">
+            🔍
+          </span>
+          <input id="search-input" type="search" placeholder="Cari menu, shopee, whatsapp, promo..." aria-label="Cari tautan UMKM"
+                 class="w-full rounded-xl bg-white pl-10 pr-4 py-2.5 text-sm ring-1 ring-stone-200 placeholder:text-stone-400 transition focus-visible:outline-2 focus-visible:outline-amber-600 dark:bg-stone-900 dark:ring-stone-800 dark:placeholder:text-stone-500 dark:focus-visible:outline-amber-400">
+        </div>
+      </div>
+
+      <!-- Tab Filter Kategori (Render Dinamis / State-Driven P3 & P4) -->
+      <nav aria-label="Filter kategori tautan">
+        <div id="filter-tabs" class="mt-3 flex flex-wrap gap-2"></div>
+      </nav>
+
+      <!-- Daftar Kartu Link (Render dari State / fetch data/links.json) -->
+      <ul id="link-list" class="mt-4 space-y-3" aria-label="Tautan UMKM"></ul>
+
+      <!-- Bagian Galeri & Katalog Produk Pilihan UMKM -->
+      <section id="catalog-section" aria-labelledby="catalog-heading" class="mt-8 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-stone-200/90 transition-colors dark:bg-stone-900 dark:ring-stone-800">
+        <div class="flex items-center justify-between">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-base" aria-hidden="true">📸</span>
+              <h2 id="catalog-heading" class="text-sm font-semibold uppercase tracking-wide text-stone-700 dark:text-stone-300">
+                Galeri & Katalog Produk
+              </h2>
+            </div>
+            <p class="mt-0.5 text-xs text-stone-500 dark:text-stone-400">
+              Menu kopi, camilan & racikan khas buatan tangan
+            </p>
+          </div>
+          <span class="rounded-full bg-amber-100 px-2.5 py-0.5 text-[11px] font-semibold text-amber-800 dark:bg-amber-950 dark:text-amber-300">
+            Fresh Daily
+          </span>
+        </div>
+
+        <!-- Filter Tab Kategori Katalog -->
+        <nav aria-label="Filter kategori produk katalog" class="mt-3.5">
+          <div id="product-filter-tabs" class="flex flex-wrap gap-1.5"></div>
+        </nav>
+
+        <!-- Grid Produk Galeri -->
+        <div id="product-grid" class="mt-4 grid grid-cols-2 gap-3" aria-label="Katalog produk UMKM"></div>
+      </section>
+
+      <!-- Form Tambah Link Baru (Pertemuan 4) -->
+      <section class="mt-10" aria-labelledby="add-link-heading">
+        <div class="flex items-center justify-between">
+          <h2 id="add-link-heading" class="text-sm font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">
+            Tambah Tautan UMKM Baru
+          </h2>
+          <span class="text-[11px] text-stone-400">Mode Kelola Cepat</span>
+        </div>
+
+        <form id="add-link-form" novalidate
+              class="mt-3 space-y-3 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-stone-200 transition-colors dark:bg-stone-900 dark:ring-stone-800">
+          <div>
+            <label for="link-title" class="block text-xs font-semibold uppercase tracking-wider text-stone-600 dark:text-stone-300">
+              Judul Tautan / Produk <span class="text-rose-500">*</span>
+            </label>
+            <input id="link-title" type="text" placeholder="Contoh: Paket Hampers Kopi Spesial"
+                   class="mt-1 w-full rounded-xl bg-stone-50 px-3.5 py-2 text-sm ring-1 ring-stone-200 transition focus-visible:outline-2 focus-visible:outline-amber-600 dark:bg-stone-950 dark:ring-stone-800 dark:focus-visible:outline-amber-400">
+          </div>
+
+          <div>
+            <label for="link-subtitle" class="block text-xs font-semibold uppercase tracking-wider text-stone-600 dark:text-stone-300">
+              Keterangan Singkat / Promo (Opsional)
+            </label>
+            <input id="link-subtitle" type="text" placeholder="Contoh: Diskon 20% selama persediaan ada"
+                   class="mt-1 w-full rounded-xl bg-stone-50 px-3.5 py-2 text-sm ring-1 ring-stone-200 transition focus-visible:outline-2 focus-visible:outline-amber-600 dark:bg-stone-950 dark:ring-stone-800 dark:focus-visible:outline-amber-400">
+          </div>
+
+          <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <div>
+              <label for="link-url" class="block text-xs font-semibold uppercase tracking-wider text-stone-600 dark:text-stone-300">
+                Alamat URL <span class="text-rose-500">*</span>
+              </label>
+              <input id="link-url" type="text" placeholder="https://..."
+                     class="mt-1 w-full rounded-xl bg-stone-50 px-3.5 py-2 text-sm ring-1 ring-stone-200 transition focus-visible:outline-2 focus-visible:outline-amber-600 dark:bg-stone-950 dark:ring-stone-800 dark:focus-visible:outline-amber-400">
+            </div>
+
+            <div>
+              <label for="link-category" class="block text-xs font-semibold uppercase tracking-wider text-stone-600 dark:text-stone-300">
+                Kategori <span class="text-rose-500">*</span>
+              </label>
+              <select id="link-category"
+                      class="mt-1 w-full rounded-xl bg-stone-50 px-3.5 py-2 text-sm ring-1 ring-stone-200 transition focus-visible:outline-2 focus-visible:outline-amber-600 dark:bg-stone-950 dark:ring-stone-800 dark:focus-visible:outline-amber-400">
+                <option value="menu">Menu & Pemesanan</option>
+                <option value="marketplace">Marketplace & E-Commerce</option>
+                <option value="sosmed">Media Sosial</option>
+                <option value="kontak">Kontak & Lokasi</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Pesan Kesalahan Form -->
+          <p id="form-error" role="alert" class="hidden text-xs font-medium text-rose-600 dark:text-rose-400"></p>
+
+          <button type="submit"
+                  class="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-amber-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition duration-150 hover:bg-amber-700 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600 dark:bg-amber-500 dark:hover:bg-amber-600 dark:focus-visible:outline-amber-400">
+            <span>➕</span> Tambah Tautan
+          </button>
+        </form>
+      </section>
+
+    </main>
+
+    <!-- FOOTER (Pertemuan 1 & 3 Stretch Goal) -->
+    <footer class="mt-12 text-center text-xs text-stone-500 dark:text-stone-400 lg:col-span-2 border-t border-stone-200/80 pt-6 dark:border-stone-800/80">
+      <p class="font-medium text-stone-700 dark:text-stone-300">
+        🇮🇩 Bangga Buatan Indonesia · Mendukung Pertumbuhan UMKM Lokal
+      </p>
+      <p class="mt-1">
+        &copy; <span id="current-year">2026</span> <strong>Rasa Nusantara</strong>. Hak Cipta Dilindungi.
+      </p>
+    </footer>
+
+  </div>
+
+  <!-- Script Logika UI Dinamis (State, Fetch, Tiny React) -->
+  <script src="script.js"></script>
 </body>
 </html>

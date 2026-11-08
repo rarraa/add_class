@@ -1,0 +1,75 @@
+[
+  {
+    "id": 1,
+    "title": "Pesan Cepat via WhatsApp",
+    "subtitle": "Order langsung, diskon 10% pesanan pertama",
+    "url": "https://wa.me/6281234567890?text=Halo%20Rasa%20Nusantara,%20saya%20ingin%20pesan%20menu",
+    "category": "menu",
+    "icon": "💬",
+    "badge": "🔥 Fast Response"
+  },
+  {
+    "id": 3,
+    "title": "Pesan di GoFood & GrabFood",
+    "subtitle": "Diskon kilat dan gratis ongkir sampai ke lokasimu",
+    "url": "https://gofood.co.id/kedai-rasa-nusantara",
+    "category": "menu",
+    "icon": "🛵",
+    "badge": "⚡ Promo Ongkir"
+  },
+  {
+    "id": 4,
+    "title": "Shopee Official Store",
+    "subtitle": "Beli biji kopi sangrai (beans/ground) & frozen food",
+    "url": "https://shopee.co.id/kedairasanusantara",
+    "category": "marketplace",
+    "icon": "🛍️",
+    "badge": "⭐ Rating 4.9"
+  },
+  {
+    "id": 5,
+    "title": "Tokopedia Official",
+    "subtitle": "Produk UMKM tersertifikasi Halal & BPOM, promo cashback",
+    "url": "https://tokopedia.com/kedairasanusantara",
+    "category": "marketplace",
+    "icon": "🏪",
+    "badge": "✨ Bebas Ongkir"
+  },
+  {
+    "id": 6,
+    "title": "Instagram @rasanusantara.id",
+    "subtitle": "Info promo mingguan, behind the scenes & giveaway",
+    "url": "https://instagram.com/rasanusantara.id",
+    "category": "sosmed",
+    "icon": "📸",
+    "badge": "📸 12K Followers"
+  },
+  {
+    "id": 7,
+    "title": "TikTok @rasanusantaracoffee",
+    "subtitle": "Tips seduh kopi rumahan & video seru pembuatan camilan",
+    "url": "https://tiktok.com/@rasanusantaracoffee",
+    "category": "sosmed",
+    "icon": "🎵",
+    "badge": "🎥 Viral"
+  },
+  {
+    "id": 8,
+    "title": "Lokasi Kedai (Google Maps)",
+    "subtitle": "Jl. Merdeka No. 45, Bandung · Suasana cozy & WiFi cepat",
+    "url": "https://maps.google.com/?q=Bandung",
+    "category": "kontak",
+    "icon": "📍",
+    "badge": "🚗 Parkir Luas"
+  },
+  {
+    "id": 9,
+    "title": "Kemitraan & Reseller UMKM",
+    "subtitle": "Hubungi tim bisnis untuk peluang suplai cafe / reseller",
+    "url": "mailto:mitra@rasanusantara.id",
+    "category": "kontak",
+    "icon": "🤝",
+    "badge": "💼 Peluang Bisnis"
+  }
+]
+
